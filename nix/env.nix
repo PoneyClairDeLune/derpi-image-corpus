@@ -26,6 +26,7 @@ pkgs.mkShell {
 		libwebp
 		mozjpeg
 		vips
+		imagemagick
 	];
 	GIT_EDITOR = "${pkgs.nano}/bin/nano";
 	shellHook = ''
