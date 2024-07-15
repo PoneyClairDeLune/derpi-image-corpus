@@ -9,12 +9,13 @@ elif [ -d "./tmp/${1}" ]; then
 	mkdir -p ./data
 	cd "tmp/$1"
 	rm test.* 2>/dev/null
-	echo "id	testId	size" > "../../data/${1}.size.tsv"
-	echo "id	testId	psnr" > "../../data/${1}.psnr.tsv"
-	echo "id	testId	ssim" > "../../data/${1}.ssim.tsv"
+	echo "id	cat	testId	size" > "../../data/${1}.size.tsv"
+	echo "id	cat	testId	psnr" > "../../data/${1}.psnr.tsv"
+	echo "id	cat	testId	ssim" > "../../data/${1}.ssim.tsv"
 	cat "../../corpus/${1}.tsv" | while IFS= read -r line; do
 		if [ "$(echo $line | cut -d' ' -f1)" != "id" ]; then
 			id="$(echo $line | cut -d' ' -f1)"
+			category="$(echo $line | cut -d' ' -f2)"
 			#url="$(echo $line | cut -d' ' -f3)"
 			file="$(ls -1 ${id}.* | grep -E "${id}\.(png|jpg)")"
 			echo "Working on \"$file\"..."
@@ -44,12 +45,12 @@ elif [ -d "./tmp/${1}" ]; then
 			vips copy "${file}" "test.${id}.d0.avif[compression=av1,lossless=false,Q=95,effort=4]"
 			# Collecting reports...
 			echo "Collecting reports..."
-			echo "${id}	source	$(wc -c ${file} | cut -d' ' -f1))" >> "../../data/${1}.size.tsv"
+			echo "${id}	${category}	source	$(wc -c ${file} | cut -d' ' -f1))" >> "../../data/${1}.size.tsv"
 			ls -1 "test.${id}."* | while IFS= read -r testfile; do
 				# Size
 				export fid="${id}"
 				export tfn="${testfile}"
-				echo "echo \"\${fid}	\${tfn/test.${fid}./}	\$(wc -c ${testfile} | cut -d' ' -f1)\"" | bash >> "../../data/${1}.size.tsv"
+				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	\$(wc -c ${testfile} | cut -d' ' -f1)\"" | bash >> "../../data/${1}.size.tsv"
 			done
 			echo "Cleaning up for the next round..."
 			rm "test.${id}."*
