@@ -1,4 +1,13 @@
 #!/bin/bash
+magickCompare=''
+if [ -f "$(which magick)" ]; then
+	magickCompare='magick compare'
+elif [ -f "$(which compare)" ]; then
+	magickCompare='compare'
+else
+	echo "ImageMagick is not present."
+	exit 1
+fi
 if [ "$1" == "" ]; then
 	echo "No corpus provided. A list is available below."
 	cd corpus
@@ -42,15 +51,19 @@ elif [ -d "./tmp/${1}" ]; then
 			# AVIF lossless
 			vips copy "${file}" "test.${id}.d0.avif[compression=av1,lossless=true,effort=4]"
 			# AVIF q95
-			vips copy "${file}" "test.${id}.d0.avif[compression=av1,lossless=false,Q=95,effort=4]"
+			vips copy "${file}" "test.${id}.q95.avif[compression=av1,lossless=false,Q=95,effort=4]"
 			# Collecting reports...
 			echo "Collecting reports..."
-			echo "${id}	${category}	source	$(wc -c ${file} | cut -d' ' -f1))" >> "../../data/${1}.size.tsv"
+			echo "${id}	${category}	source	$(wc -c ${file} | cut -d' ' -f1)" >> "../../data/${1}.size.tsv"
 			ls -1 "test.${id}."* | while IFS= read -r testfile; do
 				# Size
 				export fid="${id}"
 				export tfn="${testfile}"
 				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	\$(wc -c ${testfile} | cut -d' ' -f1)\"" | bash >> "../../data/${1}.size.tsv"
+				export psnr="$(${magickCompare} -metric PSNR "${file}" "${testfile}" "test.${id}.diff.png")"
+				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	${psnr}" | bash >> "../../data/${1}.psnr.tsv"
+				export ssim="$(${magickCompare} -metric SSIM "${file}" "${testfile}" "test.${id}.diff.png")"
+				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	${ssim}" | bash >> "../../data/${1}.ssim.tsv"
 			done
 			echo "Cleaning up for the next round..."
 			rm "test.${id}."*

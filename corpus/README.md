@@ -15,7 +15,7 @@
 * `g4sa`: `badumsquish`, `estories`, `nika-rain`, `sollace`
 * `flat`: `belka-sempai`, `leopardsnaps`, `spookyle`, `zackwhitefang`
 * `cels`: `empress-twilight`, `rangelost`, `psychotix`, `thieftea`
-* `cshd`: `assasinmonkey`, `medkit`, `veles`, `yasu`
+* `cshd`: `assasinmonkey`, `freeedon`, `medkit`, `veles`, `yasu`
 * `3d`: `bonfirepng`, `dieanondie`, `owlpirate`, `poole`, `psfmer`, `shydale`, `virileth`
 * `phtr`: N/A
 * `skec`: `druf`, `maytee`, `shadow-nights`, `sherwoodwhisper`, `starkey`
