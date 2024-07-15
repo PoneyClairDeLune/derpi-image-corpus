@@ -38,7 +38,7 @@ jobs:
       - name: Fetch corpus files
         run: "./shx fetch local"
       - name: Run the tests
-        run: "nix-shell nix/env.nix --pure --command ./shx test local"
+        run: "nix-shell nix/env.nix --pure --command './shx test local'"
       - name: Upload bundled artifact
         uses: actions/upload-pages-artifact@v3
         with:
