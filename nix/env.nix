@@ -22,6 +22,10 @@ pkgs.mkShell {
 		gzip
 		gnupg
 		# Development dependencies
+		libjxl
+		libwebp
+		mozjpeg
+		vips
 	];
 	GIT_EDITOR = "${pkgs.nano}/bin/nano";
 	shellHook = ''
