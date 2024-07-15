@@ -25,7 +25,7 @@ elif [ -d "./tmp/${1}" ]; then
 			# WebP q95
 			cwebp -mt -q 95 -m 6 -o "test.${id}.q95.webp" "$file"
 			# JXL lossless
-			#cjxl --num_threads -1 -j 0 -d 0 "$file" "test.${id}.d0.jxl"
+			cjxl --num_threads -1 -j 0 -d 0 "$file" "test.${id}.d0.jxl"
 			# JXL d1.0 p
 			cjxl --num_threads -1 -j 0 -d 1 -p "$file" "test.${id}.d1.jxl"
 			# JXL d2.0 p
@@ -39,7 +39,9 @@ elif [ -d "./tmp/${1}" ]; then
 			# mozJXL q95 p
 			cjxl -j 1 "test.${id}.q95p.jpg" "test.${id}.q95p.jxl"
 			# AVIF lossless
+			vips copy "${file}" "test.${id}.d0.avif[compression=av1,lossless=true,effort=4]"
 			# AVIF q95
+			vips copy "${file}" "test.${id}.d0.avif[compression=av1,lossless=false,Q=95,effort=4]"
 			# Collecting reports...
 			echo "Collecting reports..."
 			echo "${id}	source	$(wc -c ${file} | cut -d' ' -f1))" >> "../../data/${1}.size.tsv"
