@@ -25,7 +25,7 @@ elif [ -d "./tmp/${1}" ]; then
 			# WebP q95
 			cwebp -mt -q 95 -m 6 -o "test.${id}.q95.webp" "$file"
 			# JXL lossless
-			cjxl --num_threads -1 -j 0 -d 0 "$file" "test.${id}.d0.jxl"
+			#cjxl --num_threads -1 -j 0 -d 0 "$file" "test.${id}.d0.jxl"
 			# JXL d1.0 p
 			cjxl --num_threads -1 -j 0 -d 1 -p "$file" "test.${id}.d1.jxl"
 			# JXL d2.0 p
