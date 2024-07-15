@@ -42,6 +42,7 @@ elif [ -d "./tmp/${1}" ]; then
 			# AVIF q95
 			# Collecting reports...
 			echo "Collecting reports..."
+			echo "${id}	source	$(wc -c ${file} | cut -d' ' -f1))" >> "../../data/${1}.size.tsv"
 			ls -1 "test.${id}."* | while IFS= read -r testfile; do
 				# Size
 				export fid="${id}"
