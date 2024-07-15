@@ -61,9 +61,9 @@ elif [ -d "./tmp/${1}" ]; then
 				export tfn="${testfile}"
 				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	\$(wc -c ${testfile} | cut -d' ' -f1)\"" | bash >> "../../data/${1}.size.tsv"
 				export psnr="$(${magickCompare} -metric PSNR "${file}" "${testfile}" "test.${id}.diff.png")"
-				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	${psnr}" | bash >> "../../data/${1}.psnr.tsv"
+				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	${psnr}\"" | bash >> "../../data/${1}.psnr.tsv"
 				export ssim="$(${magickCompare} -metric SSIM "${file}" "${testfile}" "test.${id}.diff.png")"
-				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	${ssim}" | bash >> "../../data/${1}.ssim.tsv"
+				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	${ssim}\"" | bash >> "../../data/${1}.ssim.tsv"
 			done
 			echo "Cleaning up for the next round..."
 			rm "test.${id}."*
