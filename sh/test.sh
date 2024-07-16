@@ -23,7 +23,6 @@ elif [ -d "./tmp/${1}" ]; then
 	cd "tmp/$1"
 	rm test.* 2>/dev/null
 	echo "id	cat	testId	size" > "../../data/${1}.size.tsv"
-	echo "id	cat	testId	psnr" > "../../data/${1}.psnr.tsv"
 	echo "id	cat	testId	ssim" > "../../data/${1}.ssim.tsv"
 	lineCount=$(($(wc -l "../../corpus/${1}.tsv" | cut -d' ' -f1)-1))
 	lineNow=0
@@ -70,9 +69,6 @@ elif [ -d "./tmp/${1}" ]; then
 				export fid="${id}"
 				export tfn="${testfile}"
 				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	\$(wc -c ${testfile} | cut -d' ' -f1)\"" | bash >> "../../data/${1}.size.tsv"
-				echo "Collecting PSNR metrics at $(date "+%T")..."
-				export psnr="$(${magickCompare} -metric PSNR "${file}" "${testfile}" "test.${id}.diff.png" 2>&1)"
-				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	${psnr}\"" | bash >> "../../data/${1}.psnr.tsv"
 				if [ "$useSsim" != '0' ]; then
 					echo "Collecting SSIM metrics at $(date "+%T")..."
 					export ssim="$(${magickCompare} -metric SSIM "${file}" "${testfile}" "test.${id}.diff.png") 2>&1"

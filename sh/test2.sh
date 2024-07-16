@@ -49,9 +49,6 @@ elif [ -d "./tmp/${1}" ]; then
 				export fid="${id}"
 				export tfn="${testfile}"
 				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	\$(wc -c ${testfile} | cut -d' ' -f1)\"" | bash >> "../../data/${1}.size.tsv"
-				echo "Collecting PSNR metrics at $(date "+%T")..."
-				export psnr="$(${magickCompare} -metric PSNR "${file}" "${testfile}" "test.${id}.diff.png" 2>&1)"
-				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	${psnr}\"" | bash >> "../../data/${1}.psnr.tsv"
 				if [ "$useSsim" != '0' ]; then
 					echo "Collecting SSIM metrics at $(date "+%T")..."
 					export ssim="$(${magickCompare} -metric SSIM "${file}" "${testfile}" "test.${id}.diff.png") 2>&1"
