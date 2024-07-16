@@ -1,17 +1,4 @@
 #!/bin/bash
-magickCompare=''
-useSsim=0
-if [ -f "$(which magick)" ]; then
-	magickCompare='magick compare'
-elif [ -f "$(which compare)" ]; then
-	magickCompare='compare'
-else
-	echo "ImageMagick is not present."
-	exit 1
-fi
-if [ "$($magickCompare -list metric | grep 'SSIM')" != '' ]; then
-	useSsim=1
-fi
 if [ "$1" == "" ]; then
 	echo "No corpus provided. A list is available below."
 	cd corpus
@@ -23,7 +10,7 @@ elif [ -d "./tmp/${1}" ]; then
 	cd "tmp/$1"
 	rm test.* 2>/dev/null
 	echo "id	cat	testId	size" > "../../data/${1}.lossless.size.tsv"
-	echo "id	cat	testId	ssim" > "../../data/${1}.lossless.ssim.tsv"
+	#echo "id	cat	testId	ssim" > "../../data/${1}.lossless.ssim.tsv"
 	lineCount=$(($(wc -l "../../corpus/${1}.tsv" | cut -d' ' -f1)-1))
 	lineNow=0
 	cat "../../corpus/${1}.tsv" | while IFS= read -r line; do
@@ -51,11 +38,7 @@ elif [ -d "./tmp/${1}" ]; then
 				export fid="${id}"
 				export tfn="${testfile}"
 				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	\$(wc -c ${testfile} | cut -d' ' -f1)\"" | bash >> "../../data/${1}.lossless.size.tsv"
-				if [ "$useSsim" != '0' ]; then
-					echo "Collecting SSIM metrics at $(date "+%T")..."
-					export ssim="$(${magickCompare} -metric SSIM "${file}" "${testfile}" "test.${id}.diff.png") 2>&1"
-					echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	${ssim}\"" | bash >> "../../data/${1}.lossless.ssim.tsv"
-				fi
+				#echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}.y	$(../../shx ssim y tmp/${1}/${file} tmp/${1}/${testfile})\"" | bash >> "../../data/${1}.lossless.ssim.tsv"
 			done
 			echo "Cleaning up for the next round $(date "+%T")..."
 			rm "test.${id}."*

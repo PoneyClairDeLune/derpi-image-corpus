@@ -1,17 +1,5 @@
 #!/bin/bash
-magickCompare=''
-useSsim=0
-if [ -f "$(which magick)" ]; then
-	magickCompare='magick compare'
-elif [ -f "$(which compare)" ]; then
-	magickCompare='compare'
-else
-	echo "ImageMagick is not present."
-	exit 1
-fi
-if [ "$($magickCompare -list metric | grep 'SSIM')" != '' ]; then
-	useSsim=1
-fi
+imgChannels=( 'y' 'r' 'g' 'b' )
 if [ "$1" == "" ]; then
 	echo "No corpus provided. A list is available below."
 	cd corpus
@@ -69,11 +57,10 @@ elif [ -d "./tmp/${1}" ]; then
 				export fid="${id}"
 				export tfn="${testfile}"
 				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	\$(wc -c ${testfile} | cut -d' ' -f1)\"" | bash >> "../../data/${1}.lossy.size.tsv"
-				if [ "$useSsim" != '0' ]; then
-					echo "Collecting SSIM metrics at $(date "+%T")..."
-					export ssim="$(${magickCompare} -metric SSIM "${file}" "${testfile}" "test.${id}.diff.png") 2>&1"
-					echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	${ssim}\"" | bash >> "../../data/${1}.lossy.ssim.tsv"
-				fi
+				echo "Collecting SSIM metrics at $(date "+%T")..."
+				for channel in ${imgChannels[@]}; do
+					echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}.${channel}	$(../../shx ssim ${channel} tmp/${1}/${file} tmp/${1}/${testfile})\"" | bash >> "../../data/${1}.lossy.ssim.tsv"
+				done
 			done
 			echo "Cleaning up for the next round $(date "+%T")..."
 			rm "test.${id}."*
