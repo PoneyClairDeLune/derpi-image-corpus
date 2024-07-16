@@ -22,8 +22,8 @@ elif [ -d "./tmp/${1}" ]; then
 	mkdir -p ./data
 	cd "tmp/$1"
 	rm test.* 2>/dev/null
-	echo "id	cat	testId	size" > "../../data/${1}.size.tsv"
-	echo "id	cat	testId	ssim" > "../../data/${1}.ssim.tsv"
+	echo "id	cat	testId	size" > "../../data/${1}.lossy.size.tsv"
+	echo "id	cat	testId	ssim" > "../../data/${1}.lossy.ssim.tsv"
 	lineCount=$(($(wc -l "../../corpus/${1}.tsv" | cut -d' ' -f1)-1))
 	lineNow=0
 	cat "../../corpus/${1}.tsv" | while IFS= read -r line; do
@@ -63,16 +63,16 @@ elif [ -d "./tmp/${1}" ]; then
 			vips copy "${file}" "test.${id}.q95.avif[compression=av1,lossless=false,Q=95]"
 			# Collecting reports...
 			echo "Collecting reports at $(date "+%T")..."
-			echo "${id}	${category}	source	$(wc -c ${file} | cut -d' ' -f1)" >> "../../data/${1}.size.tsv"
+			echo "${id}	${category}	source	$(wc -c ${file} | cut -d' ' -f1)" >> "../../data/${1}.lossy.size.tsv"
 			ls -1 "test.${id}."* | while IFS= read -r testfile; do
 				# Size
 				export fid="${id}"
 				export tfn="${testfile}"
-				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	\$(wc -c ${testfile} | cut -d' ' -f1)\"" | bash >> "../../data/${1}.size.tsv"
+				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	\$(wc -c ${testfile} | cut -d' ' -f1)\"" | bash >> "../../data/${1}.lossy.size.tsv"
 				if [ "$useSsim" != '0' ]; then
 					echo "Collecting SSIM metrics at $(date "+%T")..."
 					export ssim="$(${magickCompare} -metric SSIM "${file}" "${testfile}" "test.${id}.diff.png") 2>&1"
-					echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	${ssim}\"" | bash >> "../../data/${1}.ssim.tsv"
+					echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	${ssim}\"" | bash >> "../../data/${1}.lossy.ssim.tsv"
 				fi
 			done
 			echo "Cleaning up for the next round $(date "+%T")..."
