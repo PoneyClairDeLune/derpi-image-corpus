@@ -9,6 +9,8 @@ on:
     # Only rebuilds when the corpus file changes
     paths:
        - "./corpus/derpi.tsv"
+       - "./sh/test.sh"
+       - "./sh/test2.sh"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
