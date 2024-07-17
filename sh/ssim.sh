@@ -19,15 +19,21 @@ case "$1" in
 		exit 1
 		;;
 esac
-if [ ! -f "${2}" ]; then
+sourceFile="${2}"
+targetFile="${3}"
+if [ "$USEDIR" != "" ]; then
+	sourceFile="${INVOKE_DIR}/${2}"
+	targetFile="${INVOKE_DIR}/${3}"
+fi
+if [ ! -f "${sourceFile}" ]; then
 	echo "The provided source image does not exist." >&2
 	exit 1
 fi
-if [ ! -f "${3}" ]; then
+if [ ! -f "${targetFile}" ]; then
 	echo "The provided target image does not exist." >&2
 	exit 1
 fi
-if [ ! -f "${3}.png" ]; then
+if [ ! -f "${targetFile}.tmp.png" ]; then
 	#if [[ "${3}" == *".jxl" ]]; then
 	#	djxl --quiet "${3}" "${3}.png"
 	#elif [[ "${3}" == *".webp" ]]; then
@@ -38,8 +44,8 @@ if [ ! -f "${3}.png" ]; then
 	#	avifdec "${3}" "${3}.png" > /dev/null
 	#else
 		#echo "Extension not matched!" >&2
-		vips copy "${3}" "${3}.png[compression=3]"
+		vips copy "${targetFile}" "${targetFile}.tmp.png[compression=3]"
 	#fi
 fi
-"$ssimBin" -${testChannel} "${2}" "${3}.png"
+"$ssimBin" -${testChannel} "${sourceFile}" "${targetFile}.tmp.png"
 exit
