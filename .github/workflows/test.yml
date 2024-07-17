@@ -45,10 +45,14 @@ jobs:
         uses: cachix/install-nix-action@v27
         with:
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: Prepare dependencies
+        run: "./shx prepare"
       - name: Fetch corpus files
         run: "./shx fetch derpi"
-      - name: Run the tests
+      - name: Run the lossy tests
         run: "nix-shell nix/env.nix --pure --command './shx test derpi'"
+      - name: Run the lossless tests
+        run: "nix-shell nix/env.nix --pure --command './shx test2 derpi'"
       - name: Upload bundled artifact
         uses: actions/upload-pages-artifact@v3
         with:
