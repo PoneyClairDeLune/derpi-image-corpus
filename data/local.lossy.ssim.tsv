@@ -7,14 +7,14 @@ id	cat	testId	ssim
 3128284	cshd	d2.jxl.r	 0.9840
 3128284	cshd	d2.jxl.g	 0.9854
 3128284	cshd	d2.jxl.b	 0.9808
-3128284	cshd	p56.webp.y	 0.9935
-3128284	cshd	p56.webp.r	 0.9881
+3128284	cshd	p56.webp.y	 0.9934
+3128284	cshd	p56.webp.r	 0.9879
 3128284	cshd	p56.webp.g	 0.9915
-3128284	cshd	p56.webp.b	 0.9854
-3128284	cshd	q95.avif.y	 0.9941
-3128284	cshd	q95.avif.r	 0.9900
-3128284	cshd	q95.avif.g	 0.9914
-3128284	cshd	q95.avif.b	 0.9879
+3128284	cshd	p56.webp.b	 0.9852
+3128284	cshd	q90.avif.y	 0.9941
+3128284	cshd	q90.avif.r	 0.9900
+3128284	cshd	q90.avif.g	 0.9914
+3128284	cshd	q90.avif.b	 0.9879
 3128284	cshd	q95.jpg.y	 0.9937
 3128284	cshd	q95.jpg.r	 0.9896
 3128284	cshd	q95.jpg.g	 0.9910
@@ -31,10 +31,10 @@ id	cat	testId	ssim
 3128284	cshd	q95p.jxl.r	 0.9914
 3128284	cshd	q95p.jxl.g	 0.9919
 3128284	cshd	q95p.jxl.b	 0.9902
-3128284	cshd	q95.webp.y	 0.9912
-3128284	cshd	q95.webp.r	 0.9856
-3128284	cshd	q95.webp.g	 0.9889
-3128284	cshd	q95.webp.b	 0.9830
+3128284	cshd	q95.webp.y	 0.9909
+3128284	cshd	q95.webp.r	 0.9853
+3128284	cshd	q95.webp.g	 0.9887
+3128284	cshd	q95.webp.b	 0.9825
 3173147	flat	d1.jxl.y	 0.8436
 3173147	flat	d1.jxl.r	 0.7822
 3173147	flat	d1.jxl.g	 0.7713
@@ -45,12 +45,12 @@ id	cat	testId	ssim
 3173147	flat	d2.jxl.b	 0.7530
 3173147	flat	p56.webp.y	 0.8464
 3173147	flat	p56.webp.r	 0.7580
-3173147	flat	p56.webp.g	 0.7728
-3173147	flat	p56.webp.b	 0.7457
-3173147	flat	q95.avif.y	 1.0000
-3173147	flat	q95.avif.r	 0.9956
-3173147	flat	q95.avif.g	 0.9958
-3173147	flat	q95.avif.b	 0.9956
+3173147	flat	p56.webp.g	 0.7725
+3173147	flat	p56.webp.b	 0.7455
+3173147	flat	q90.avif.y	 1.0000
+3173147	flat	q90.avif.r	 0.9956
+3173147	flat	q90.avif.g	 0.9958
+3173147	flat	q90.avif.b	 0.9956
 3173147	flat	q95.jpg.y	
 3173147	flat	q95.jpg.r	
 3173147	flat	q95.jpg.g	
@@ -68,9 +68,9 @@ id	cat	testId	ssim
 3173147	flat	q95p.jxl.g	
 3173147	flat	q95p.jxl.b	
 3173147	flat	q95.webp.y	 0.8464
-3173147	flat	q95.webp.r	 0.7580
-3173147	flat	q95.webp.g	 0.7728
-3173147	flat	q95.webp.b	 0.7457
+3173147	flat	q95.webp.r	 0.7582
+3173147	flat	q95.webp.g	 0.7723
+3173147	flat	q95.webp.b	 0.7455
 3213053	cshd	d1.jxl.y	 0.9979
 3213053	cshd	d1.jxl.r	 0.9971
 3213053	cshd	d1.jxl.g	 0.9979
@@ -82,11 +82,11 @@ id	cat	testId	ssim
 3213053	cshd	p56.webp.y	 0.9969
 3213053	cshd	p56.webp.r	 0.9956
 3213053	cshd	p56.webp.g	 0.9965
-3213053	cshd	p56.webp.b	 0.9946
-3213053	cshd	q95.avif.y	 0.9985
-3213053	cshd	q95.avif.r	 0.9972
-3213053	cshd	q95.avif.g	 0.9978
-3213053	cshd	q95.avif.b	 0.9968
+3213053	cshd	p56.webp.b	 0.9945
+3213053	cshd	q90.avif.y	 0.9985
+3213053	cshd	q90.avif.r	 0.9972
+3213053	cshd	q90.avif.g	 0.9978
+3213053	cshd	q90.avif.b	 0.9968
 3213053	cshd	q95.jpg.y	 0.9980
 3213053	cshd	q95.jpg.r	 0.9967
 3213053	cshd	q95.jpg.g	 0.9973
@@ -103,10 +103,10 @@ id	cat	testId	ssim
 3213053	cshd	q95p.jxl.r	 0.9971
 3213053	cshd	q95p.jxl.g	 0.9975
 3213053	cshd	q95p.jxl.b	 0.9968
-3213053	cshd	q95.webp.y	 0.9974
-3213053	cshd	q95.webp.r	 0.9957
-3213053	cshd	q95.webp.g	 0.9969
-3213053	cshd	q95.webp.b	 0.9946
+3213053	cshd	q95.webp.y	 0.9971
+3213053	cshd	q95.webp.r	 0.9951
+3213053	cshd	q95.webp.g	 0.9964
+3213053	cshd	q95.webp.b	 0.9934
 3361674	flat	d1.jxl.y	 0.9970
 3361674	flat	d1.jxl.r	 0.9898
 3361674	flat	d1.jxl.g	 0.9979
@@ -115,14 +115,14 @@ id	cat	testId	ssim
 3361674	flat	d2.jxl.r	 0.9878
 3361674	flat	d2.jxl.g	 0.9975
 3361674	flat	d2.jxl.b	 0.9974
-3361674	flat	p56.webp.y	 0.9973
-3361674	flat	p56.webp.r	 0.9907
-3361674	flat	p56.webp.g	 0.9974
-3361674	flat	p56.webp.b	 0.9903
-3361674	flat	q95.avif.y	 0.9983
-3361674	flat	q95.avif.r	 0.9954
-3361674	flat	q95.avif.g	 0.9985
-3361674	flat	q95.avif.b	 0.9989
+3361674	flat	p56.webp.y	 0.9972
+3361674	flat	p56.webp.r	 0.9899
+3361674	flat	p56.webp.g	 0.9971
+3361674	flat	p56.webp.b	 0.9894
+3361674	flat	q90.avif.y	 0.9983
+3361674	flat	q90.avif.r	 0.9954
+3361674	flat	q90.avif.g	 0.9985
+3361674	flat	q90.avif.b	 0.9989
 3361674	flat	q95.jpg.y	 0.9970
 3361674	flat	q95.jpg.r	 0.9928
 3361674	flat	q95.jpg.g	 0.9973
@@ -139,7 +139,7 @@ id	cat	testId	ssim
 3361674	flat	q95p.jxl.r	 0.9933
 3361674	flat	q95p.jxl.g	 0.9975
 3361674	flat	q95p.jxl.b	 0.9972
-3361674	flat	q95.webp.y	 0.9973
-3361674	flat	q95.webp.r	 0.9908
-3361674	flat	q95.webp.g	 0.9974
-3361674	flat	q95.webp.b	 0.9905
+3361674	flat	q95.webp.y	 0.9972
+3361674	flat	q95.webp.r	 0.9903
+3361674	flat	q95.webp.g	 0.9972
+3361674	flat	q95.webp.b	 0.9895

@@ -24,10 +24,10 @@ elif [ -d "./tmp/${1}" ]; then
 			echo -e "\033[1;37mNew progress\033[0m: Working on \"$file\" at $(date "+%T")... (${lineNow}/${lineCount})"
 			# WebP 56dB
 			echo "Saving WebP PSNR 56dB at $(date "+%T")..."
-			cwebp -mt -psnr 56 -qrange 90 99 -m 6 -o "test.${id}.p56.webp" 2> /dev/null "$file"
+			cwebp -mt -psnr 56 -qrange 90 99 -m 5 -o "test.${id}.p56.webp" 2> /dev/null "$file"
 			# WebP q95
 			echo "Saving WebP q95 at $(date "+%T")..."
-			cwebp -mt -q 95 -m 6 -o "test.${id}.q95.webp" "$file" 2> /dev/null
+			cwebp -mt -q 95 -m 5 -o "test.${id}.q95.webp" "$file" 2> /dev/null
 			# JXL d1.0 p
 			echo "Saving JPEG XL d1.0 at $(date "+%T")..."
 			cjxl --num_threads -1 -j 0 -d 1 -p "$file" "test.${id}.d1.jxl" 2> /dev/null
@@ -48,7 +48,7 @@ elif [ -d "./tmp/${1}" ]; then
 			cjxl -j 1 "test.${id}.q95p.jpg" "test.${id}.q95p.jxl" 2> /dev/null
 			# AVIF q90
 			echo "Saving AVIF q90 at $(date "+%T")..."
-			vips copy "${file}" "test.${id}.q95.avif[compression=av1,lossless=false,Q=90]"
+			vips copy "${file}" "test.${id}.q90.avif[compression=av1,lossless=false,Q=90]"
 			# Collecting reports...
 			echo "Collecting reports at $(date "+%T")..."
 			echo "${id}	${category}	source	$(wc -c ${file} | cut -d' ' -f1)" >> "../../data/${1}.lossy.size.tsv"
