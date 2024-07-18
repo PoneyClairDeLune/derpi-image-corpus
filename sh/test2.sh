@@ -26,7 +26,10 @@ elif [ -d "./tmp/${1}" ]; then
 			cwebp -mt -lossless -m 6 -o "test.${id}.d0.webp" "$file" 2> /dev/null
 			# JXL lossless
 			echo "Saving JPEG XL lossless at $(date "+%T")..."
-			cjxl --num_threads -1 -j 0 -d 0 "$file" "test.${id}.d0.jxl" 2> /dev/null
+			cjxl --num_threads -1 -j 0 -d 0 -e 6 "$file" "test.${id}.d0.jxl" 2> /dev/null
+			# JXL lossless
+			echo "Saving JPEG XL lossless progressive at $(date "+%T")..."
+			cjxl --num_threads -1 -j 0 -d 0 -e 6 -p "$file" "test.${id}.d0p.jxl" 2> /dev/null
 			# AVIF lossless
 			echo "Saving AVIF lossless at $(date "+%T")..."
 			vips copy "${file}" "test.${id}.d0.avif[compression=av1,lossless=true]"

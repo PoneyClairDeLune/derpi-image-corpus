@@ -46,9 +46,9 @@ elif [ -d "./tmp/${1}" ]; then
 			# mozJXL q95 p
 			echo "Saving mozJXL q95 progressive at $(date "+%T")..."
 			cjxl -j 1 "test.${id}.q95p.jpg" "test.${id}.q95p.jxl" 2> /dev/null
-			# AVIF q95
-			echo "Saving AVIF q95 at $(date "+%T")..."
-			vips copy "${file}" "test.${id}.q95.avif[compression=av1,lossless=false,Q=95]"
+			# AVIF q90
+			echo "Saving AVIF q90 at $(date "+%T")..."
+			vips copy "${file}" "test.${id}.q95.avif[compression=av1,lossless=false,Q=90]"
 			# Collecting reports...
 			echo "Collecting reports at $(date "+%T")..."
 			echo "${id}	${category}	source	$(wc -c ${file} | cut -d' ' -f1)" >> "../../data/${1}.lossy.size.tsv"

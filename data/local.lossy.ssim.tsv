@@ -11,10 +11,10 @@ id	cat	testId	ssim
 3128284	cshd	p56.webp.r	 0.9881
 3128284	cshd	p56.webp.g	 0.9915
 3128284	cshd	p56.webp.b	 0.9854
-3128284	cshd	q95.avif.y	 0.9962
-3128284	cshd	q95.avif.r	 0.9922
-3128284	cshd	q95.avif.g	 0.9937
-3128284	cshd	q95.avif.b	 0.9902
+3128284	cshd	q95.avif.y	 0.9941
+3128284	cshd	q95.avif.r	 0.9900
+3128284	cshd	q95.avif.g	 0.9914
+3128284	cshd	q95.avif.b	 0.9879
 3128284	cshd	q95.jpg.y	 0.9937
 3128284	cshd	q95.jpg.r	 0.9896
 3128284	cshd	q95.jpg.g	 0.9910
@@ -48,9 +48,9 @@ id	cat	testId	ssim
 3173147	flat	p56.webp.g	 0.7728
 3173147	flat	p56.webp.b	 0.7457
 3173147	flat	q95.avif.y	 1.0000
-3173147	flat	q95.avif.r	 0.9962
-3173147	flat	q95.avif.g	 0.9966
-3173147	flat	q95.avif.b	 0.9963
+3173147	flat	q95.avif.r	 0.9956
+3173147	flat	q95.avif.g	 0.9958
+3173147	flat	q95.avif.b	 0.9956
 3173147	flat	q95.jpg.y	
 3173147	flat	q95.jpg.r	
 3173147	flat	q95.jpg.g	
@@ -83,10 +83,10 @@ id	cat	testId	ssim
 3213053	cshd	p56.webp.r	 0.9956
 3213053	cshd	p56.webp.g	 0.9965
 3213053	cshd	p56.webp.b	 0.9946
-3213053	cshd	q95.avif.y	 0.9989
-3213053	cshd	q95.avif.r	 0.9975
-3213053	cshd	q95.avif.g	 0.9982
-3213053	cshd	q95.avif.b	 0.9972
+3213053	cshd	q95.avif.y	 0.9985
+3213053	cshd	q95.avif.r	 0.9972
+3213053	cshd	q95.avif.g	 0.9978
+3213053	cshd	q95.avif.b	 0.9968
 3213053	cshd	q95.jpg.y	 0.9980
 3213053	cshd	q95.jpg.r	 0.9967
 3213053	cshd	q95.jpg.g	 0.9973
@@ -119,10 +119,10 @@ id	cat	testId	ssim
 3361674	flat	p56.webp.r	 0.9907
 3361674	flat	p56.webp.g	 0.9974
 3361674	flat	p56.webp.b	 0.9903
-3361674	flat	q95.avif.y	 0.9992
-3361674	flat	q95.avif.r	 0.9975
-3361674	flat	q95.avif.g	 0.9988
-3361674	flat	q95.avif.b	 0.9988
+3361674	flat	q95.avif.y	 0.9983
+3361674	flat	q95.avif.r	 0.9954
+3361674	flat	q95.avif.g	 0.9985
+3361674	flat	q95.avif.b	 0.9989
 3361674	flat	q95.jpg.y	 0.9970
 3361674	flat	q95.jpg.r	 0.9928
 3361674	flat	q95.jpg.g	 0.9973

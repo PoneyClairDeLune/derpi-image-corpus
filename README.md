@@ -1,20 +1,13 @@
-# shx
-📜 Bash/PDKSH shell action executor. Never `npx` again.
+# Derpibooru Image Corpus
+🖼 Battle of image codecs with corpus sourced from Derpibooru. 
 
-Documentation available at [kb.ltgc.cc](https://kb.ltgc.cc/shx/).
+The tests are conducted against the following formats:
 
-## Supported shells
-* AT&T `ksh`
-  * May not work properly due to buggy `IFS` implementation.
-* Bash
-* `zsh`
-
-## Unsupported shells
-* `ash`
-* BusyBox `sh`
-* `dash`
-* `loksh` (as of version 7.4)
-* `oksh` (as of version 7.3)
-* OpenBSD `ksh`
-* `yash` (as of version 2.55)
-* `mksh` (when array slicing is supported)
+* Lossy JPEG (via `mozjpeg`)
+* Lossy JPEG progressive (via `mozjpeg`)
+* Lossy WebP (via `libwebp`)
+* Lossy JPEG XL progressive (via `libjxl`)
+* Lossy AVIF (via `libvips`)
+* Lossless WebP (via `libwebp`)
+* Lossless JPEG XL (via `libjxl`)
+* Lossless AVIF (via `libvips`)
