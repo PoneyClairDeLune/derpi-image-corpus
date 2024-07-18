@@ -30,10 +30,10 @@ elif [ -d "./tmp/${1}" ]; then
 			cwebp -mt -q 95 -m 5 -o "test.${id}.q95.webp" "$file" 2> /dev/null
 			# JXL d1.0 p
 			echo "Saving JPEG XL d1.0 at $(date "+%T")..."
-			cjxl --num_threads -1 -j 0 -d 1 -p "$file" "test.${id}.d1.jxl" 2> /dev/null
+			cjxl --num_threads -1 -j 0 -d 1 -p --progressive_dc 1 "$file" "test.${id}.d1.jxl" 2> /dev/null
 			# JXL d2.0 p
 			echo "Saving JPEG XL d2.0 at $(date "+%T")..."
-			cjxl --num_threads -1 -j 0 -d 2 -p "$file" "test.${id}.d2.jxl" 2> /dev/null
+			cjxl --num_threads -1 -j 0 -d 2 -p --progressive_dc 1 "$file" "test.${id}.d2.jxl" 2> /dev/null
 			# mozJPEG q95 np
 			echo "Saving mozJPEG q95 at $(date "+%T")..."
 			cjpeg -baseline -quality 95 -optimize -outfile "test.${id}.q95.jpg" "$file" 2> /dev/null
