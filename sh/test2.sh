@@ -27,9 +27,9 @@ elif [ -d "./tmp/${1}" ]; then
 			# JXL lossless
 			echo "Saving JPEG XL lossless at $(date "+%T")..."
 			cjxl --num_threads -1 -j 0 -d 0 -e 7 "$file" "test.${id}.d0.jxl" 2> /dev/null
-			# JXL lossless
-			echo "Saving JPEG XL lossless progressive at $(date "+%T")..."
-			cjxl --num_threads -1 -j 0 -d 0 -e 7 -p "$file" "test.${id}.d0p.jxl" 2> /dev/null
+			# JXL lossless progressive
+			#echo "Saving JPEG XL lossless progressive at $(date "+%T")..."
+			#cjxl --num_threads -1 -j 0 -d 0 -e 7 -p "$file" "test.${id}.d0p.jxl" 2> /dev/null
 			# AVIF lossless
 			echo "Saving AVIF lossless at $(date "+%T")..."
 			#vips copy "${file}" "test.${id}.d0.avif[compression=av1,lossless=true]"

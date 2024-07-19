@@ -49,6 +49,12 @@ elif [ -d "./tmp/${1}" ]; then
 			# AVIF q90
 			echo "Saving AVIF q90 at $(date "+%T")..."
 			vips copy "${file}" "test.${id}.q90.avif[compression=av1,lossless=false,Q=90]"
+			# WebP near lossless (fake lossless)
+			echo "Saving WebP fake lossless at $(date "+%T")..."
+			cwebp -mt -near_lossless 60 -m 6 -o "test.${id}.nl.webp" "$file" 2> /dev/null
+			# JXL near lossless (fake lossless)
+			echo "Saving JPEG XL fake lossless at $(date "+%T")..."
+			cjxl --num_threads -1 -j 0 -m 1 -d 0.1 -e 7 "$file" "test.${id}.nl.jxl" 2> /dev/null
 			# Collecting reports...
 			echo "Collecting reports at $(date "+%T")..."
 			echo "${id}	${category}	source	$(wc -c ${file} | cut -d' ' -f1)" >> "../../data/${1}.lossy.size.tsv"
