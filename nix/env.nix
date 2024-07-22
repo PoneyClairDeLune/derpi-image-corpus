@@ -27,6 +27,7 @@ pkgs.mkShell {
 		mozjpeg
 		libavif
 		vips
+		ssimulacra2
 	];
 	GIT_EDITOR = "${pkgs.nano}/bin/nano";
 	shellHook = ''

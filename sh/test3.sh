@@ -1,5 +1,4 @@
 #!/bin/bash
-imgChannels=( 'y' )
 if [ "$1" == "" ]; then
 	echo "No corpus provided. A list is available below."
 	cd corpus
@@ -46,9 +45,7 @@ elif [ -d "./tmp/${1}" ]; then
 				export tfn="${testfile}"
 				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	\$(wc -c ${testfile} | cut -d' ' -f1)\"" | bash >> "../../data/${1}.lossy.size.tsv"
 				echo "Collecting SSIM metrics at $(date "+%T")..."
-				for channel in ${imgChannels[@]}; do
-					echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}.${channel}	$(../../shx ssim ${channel} tmp/${1}/${file} tmp/${1}/${testfile})\"" | bash >> "../../data/${1}.lossy.ssim.tsv"
-				done
+					echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	$(../../shx ssim tmp/${1}/${file} tmp/${1}/${testfile})\"" | bash >> "../../data/${1}.lossy.ssim.tsv"
 			done
 			echo "Cleaning up for the next round $(date "+%T")..."
 			rm "test.${id}."*
