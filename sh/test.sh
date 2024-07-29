@@ -37,23 +37,29 @@ elif [ -d "./tmp/${1}" ]; then
 			echo "Saving mozJPEG q95 at $(date "+%T")..."
 			cjpeg -baseline -quality 95 -optimize -outfile "test.${id}.q95.jpg" "$file" 2> /dev/null
 			# mozJXL q95 np
-			echo "Saving mozJXL q95 at $(date "+%T")..."
-			cjxl -j 1 "test.${id}.q95.jpg" "test.${id}.q95.jxl" 2> /dev/null
+			#echo "Saving mozJXL q95 at $(date "+%T")..."
+			#cjxl -j 1 "test.${id}.q95.jpg" "test.${id}.q95.jxl" 2> /dev/null
 			# mozJPEG q95 p
 			echo "Saving mozJPEG q95 progressive at $(date "+%T")..."
 			cjpeg -progressive -quality 95 -optimize -outfile "test.${id}.q95p.jpg" "$file" 2> /dev/null
 			# mozJXL q95 p
-			echo "Saving mozJXL q95 progressive at $(date "+%T")..."
-			cjxl -j 1 "test.${id}.q95p.jpg" "test.${id}.q95p.jxl" 2> /dev/null
+			#echo "Saving mozJXL q95 progressive at $(date "+%T")..."
+			#cjxl -j 1 "test.${id}.q95p.jpg" "test.${id}.q95p.jxl" 2> /dev/null
 			# AVIF q90
 			echo "Saving AVIF q90 at $(date "+%T")..."
 			vips copy "${file}" "test.${id}.q90.avif[compression=av1,lossless=false,Q=90]"
 			# WebP near lossless (fake lossless)
 			echo "Saving WebP fake lossless at $(date "+%T")..."
 			cwebp -mt -near_lossless 60 -m 6 -o "test.${id}.nl.webp" "$file" 2> /dev/null
+			# WebP smaller near lossless (fake lossless)
+			echo "Saving WebP smaller fake lossless at $(date "+%T")..."
+			cwebp -mt -near_lossless 50 -m 6 -o "test.${id}.snl.webp" "$file" 2> /dev/null
 			# JXL near lossless (fake lossless)
 			echo "Saving JPEG XL fake lossless at $(date "+%T")..."
 			cjxl --num_threads -1 -j 0 -m 1 -d 0.1 -e 7 "$file" "test.${id}.nl.jxl" 2> /dev/null
+			# JXL smaller near lossless (fake lossless)
+			echo "Saving JPEG XL smaller fake lossless at $(date "+%T")..."
+			cjxl --num_threads -1 -j 0 -m 1 -d 0.25 -e 7 "$file" "test.${id}.snl.jxl" 2> /dev/null
 			# Collecting reports...
 			echo "Collecting reports at $(date "+%T")..."
 			echo "${id}	${category}	source	$(wc -c ${file} | cut -d' ' -f1)" >> "../../data/${1}.lossy.size.tsv"
