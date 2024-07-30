@@ -12,6 +12,9 @@ on:
       - "corpus/derpi.tsv"
       - "sh/test.sh"
       - "sh/test2.sh"
+      - "sh/prepare.sh"
+      - "sh/ssim.sh"
+      - "sh/dssim.sh"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -19,7 +22,6 @@ on:
   # Schedules on every friday afternoon
   schedule:
     - cron: "30 17 * * 5"
-  
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
