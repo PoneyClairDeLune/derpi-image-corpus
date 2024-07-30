@@ -16,5 +16,9 @@ fi
 if [ ! -f "${targetFile}.tmp.png" ]; then
 	vips copy "${targetFile}" "${targetFile}.tmp.png[compression=3]"
 fi
-dssim "${sourceFile}" "${targetFile}.tmp.png" | cut -d'	' -f1
+runBin="run/dssim"
+if [ ! -f "$runBin" ]; then
+	runBin="dssim"
+fi
+$runBin "${sourceFile}" "${targetFile}.tmp.png" | cut -d'	' -f1
 exit
