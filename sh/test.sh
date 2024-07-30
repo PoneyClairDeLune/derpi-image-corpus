@@ -10,7 +10,8 @@ elif [ -d "./tmp/${1}" ]; then
 	cd "tmp/$1"
 	rm test.* 2>/dev/null
 	echo "id	cat	testId	size" > "../../data/${1}.lossy.size.tsv"
-	echo "id	cat	testId	ssim" > "../../data/${1}.lossy.ssim.tsv"
+	echo "id	cat	testId	ssimu2" > "../../data/${1}.lossy.ssim.tsv"
+	echo "id	cat	testId	dssim" > "../../data/${1}.lossy.dssim.tsv"
 	lineCount=$(($(wc -l "../../corpus/${1}.tsv" | cut -d' ' -f1)-1))
 	lineNow=0
 	cat "../../corpus/${1}.tsv" | while IFS= read -r line; do
@@ -34,14 +35,14 @@ elif [ -d "./tmp/${1}" ]; then
 			echo "Saving JPEG XL d2.0 at $(date "+%T")..."
 			cjxl --num_threads -1 -j 0 -d 2 -p --progressive_dc 1 "$file" "test.${id}.d2.jxl" 2> /dev/null
 			# mozJPEG q95 np
-			echo "Saving mozJPEG q95 at $(date "+%T")..."
-			cjpeg -baseline -quality 95 -optimize -outfile "test.${id}.q95.jpg" "$file" 2> /dev/null
+			#echo "Saving mozJPEG q95 at $(date "+%T")..."
+			#cjpeg -baseline -quality 95 -optimize -outfile "test.${id}.q95.jpg" "$file" 2> /dev/null
 			# mozJXL q95 np
 			#echo "Saving mozJXL q95 at $(date "+%T")..."
 			#cjxl -j 1 "test.${id}.q95.jpg" "test.${id}.q95.jxl" 2> /dev/null
 			# mozJPEG q95 p
-			echo "Saving mozJPEG q95 progressive at $(date "+%T")..."
-			cjpeg -progressive -quality 95 -optimize -outfile "test.${id}.q95p.jpg" "$file" 2> /dev/null
+			#echo "Saving mozJPEG q95 progressive at $(date "+%T")..."
+			#cjpeg -progressive -quality 95 -optimize -outfile "test.${id}.q95p.jpg" "$file" 2> /dev/null
 			# mozJXL q95 p
 			#echo "Saving mozJXL q95 progressive at $(date "+%T")..."
 			#cjxl -j 1 "test.${id}.q95p.jpg" "test.${id}.q95p.jxl" 2> /dev/null
@@ -52,11 +53,11 @@ elif [ -d "./tmp/${1}" ]; then
 			echo "Saving WebP fake lossless at $(date "+%T")..."
 			cwebp -mt -near_lossless 60 -m 6 -o "test.${id}.nl.webp" "$file" 2> /dev/null
 			# WebP smaller near lossless (fake lossless)
-			echo "Saving WebP smaller fake lossless at $(date "+%T")..."
-			cwebp -mt -near_lossless 50 -m 6 -o "test.${id}.snl.webp" "$file" 2> /dev/null
+			#echo "Saving WebP smaller fake lossless at $(date "+%T")..."
+			#cwebp -mt -near_lossless 50 -m 6 -o "test.${id}.snl.webp" "$file" 2> /dev/null
 			# JXL near lossless (fake lossless)
-			echo "Saving JPEG XL fake lossless at $(date "+%T")..."
-			cjxl --num_threads -1 -j 0 -m 1 -d 0.1 -e 7 "$file" "test.${id}.nl.jxl" 2> /dev/null
+			#echo "Saving JPEG XL fake lossless at $(date "+%T")..."
+			#cjxl --num_threads -1 -j 0 -m 1 -d 0.1 -e 7 "$file" "test.${id}.nl.jxl" 2> /dev/null
 			# JXL smaller near lossless (fake lossless)
 			echo "Saving JPEG XL smaller fake lossless at $(date "+%T")..."
 			cjxl --num_threads -1 -j 0 -m 1 -d 0.25 -e 7 "$file" "test.${id}.snl.jxl" 2> /dev/null
@@ -68,8 +69,10 @@ elif [ -d "./tmp/${1}" ]; then
 				export fid="${id}"
 				export tfn="${testfile}"
 				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	\$(wc -c ${testfile} | cut -d' ' -f1)\"" | bash >> "../../data/${1}.lossy.size.tsv"
-				echo "Collecting SSIM metrics at $(date "+%T")..."
+				echo "Collecting SSIMULACRA2 metrics at $(date "+%T")..."
 				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	$(../../shx ssim tmp/${1}/${file} tmp/${1}/${testfile})\"" | bash >> "../../data/${1}.lossy.ssim.tsv"
+				echo "Collecting DSSIM metrics at $(date "+%T")..."
+				echo "echo \"\${fid}	${category}	\${tfn/test.${fid}./}	$(../../shx dssim tmp/${1}/${file} tmp/${1}/${testfile})\"" | bash >> "../../data/${1}.lossy.dssim.tsv"
 			done
 			echo "Cleaning up for the next round $(date "+%T")..."
 			rm "test.${id}."*
