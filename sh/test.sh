@@ -35,14 +35,14 @@ elif [ -d "./tmp/${1}" ]; then
 			echo "Saving JPEG XL d2.0 at $(date "+%T")..."
 			cjxl --num_threads -1 -j 0 -d 2 -p --progressive_dc 1 "$file" "test.${id}.d2.jxl" 2> /dev/null
 			# mozJPEG q95 np
-			#echo "Saving mozJPEG q95 at $(date "+%T")..."
-			#cjpeg -baseline -quality 95 -optimize -outfile "test.${id}.q95.jpg" "$file" 2> /dev/null
+			echo "Saving jpegli d1.0 at $(date "+%T")..."
+			cjpegli -d 1.0 -p 0 "$file" "test.${id}.q95.jpg" 2> /dev/null
 			# mozJXL q95 np
 			#echo "Saving mozJXL q95 at $(date "+%T")..."
 			#cjxl -j 1 "test.${id}.q95.jpg" "test.${id}.q95.jxl" 2> /dev/null
 			# mozJPEG q95 p
-			#echo "Saving mozJPEG q95 progressive at $(date "+%T")..."
-			#cjpeg -progressive -quality 95 -optimize -outfile "test.${id}.q95p.jpg" "$file" 2> /dev/null
+			echo "Saving jpegli d1.0 progressive at $(date "+%T")..."
+			cjpegli -d 1.0 -p 2 "$file" "test.${id}.q95p.jpg" 2> /dev/null
 			# mozJXL q95 p
 			#echo "Saving mozJXL q95 progressive at $(date "+%T")..."
 			#cjxl -j 1 "test.${id}.q95p.jpg" "test.${id}.q95p.jxl" 2> /dev/null
@@ -60,7 +60,7 @@ elif [ -d "./tmp/${1}" ]; then
 			#cjxl --num_threads -1 -j 0 -m 1 -d 0.1 -e 7 "$file" "test.${id}.nl.jxl" 2> /dev/null
 			# JXL smaller near lossless (fake lossless)
 			echo "Saving JPEG XL smaller fake lossless at $(date "+%T")..."
-			cjxl --num_threads -1 -j 0 -m 1 -d 0.25 -e 7 "$file" "test.${id}.snl.jxl" 2> /dev/null
+			cjxl --num_threads -1 -j 0 -m 1 -d 0.2 -e 7 "$file" "test.${id}.snl.jxl" 2> /dev/null
 			# Collecting reports...
 			echo "Collecting reports at $(date "+%T")..."
 			echo "${id}	${category}	source	$(wc -c ${file} | cut -d' ' -f1)" >> "../../data/${1}.lossy.size.tsv"
