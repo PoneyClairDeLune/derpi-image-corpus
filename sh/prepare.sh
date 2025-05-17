@@ -11,6 +11,10 @@ if [ ! -f "$(which dssim)" ]; then
 	curl -Lo dssim.deb https://github.com/kornelski/dssim/releases/download/3.2.3/dssim_3.2.3_amd64.deb
 	sudo dpkg -i dssim.deb
 fi
+echo "Installing Grok J2K..."
+if [ ! -f "$(which grk_compress)" ]; then
+	sudo apt install -y grokj2k-tools
+fi
 if [ ! -f "./run/dssim" ]; then
 	ln -s "$(which dssim)" run/dssim
 fi

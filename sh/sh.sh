@@ -16,7 +16,7 @@ if [ -f "$USER_DIR/.gitconfig" ]; then
 fi
 if [ -e "$(which nix-shell)" ]; then
 	echo "Starting Nix shell..."
-	nix-shell nix/${useNix}.nix --quiet --pure --command zsh
+	nix-shell nix/${useNix}.nix --quiet --command zsh #--pure
 	echo "Quitting Nix shell..."
 	rm nix/.zcompdump 2> /dev/null
 	rm nix/zsh/.zcompdump 2> /dev/null

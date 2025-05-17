@@ -13,8 +13,11 @@ if [ ! -f "${targetFile}" ]; then
 	echo "The provided target image does not exist." >&2
 	exit 1
 fi
+#if [ -f "${targetFile}.tmp.ppm" ]; then
+	#vips copy "${targetFile}.tmp.ppm" "${targetFile}.tmp.png[compression=1]"
+#fi
 if [ ! -f "${targetFile}.tmp.png" ]; then
-	vips copy "${targetFile}" "${targetFile}.tmp.png[compression=3]"
+	vips copy "${targetFile}" "${targetFile}.tmp.png[compression=1]"
 fi
 ssimulacra2 "${sourceFile}" "${targetFile}.tmp.png"
 exit
