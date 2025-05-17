@@ -26,6 +26,9 @@ elif [ -d "./tmp/${1}" ]; then
 			# WebP 56dB
 			echo "Saving WebP PSNR 56dB at $(date "+%T")..."
 			cwebp -mt -psnr 56 -qrange 90 99 -m 5 -o "test.${id}.p56.webp" 2> /dev/null "$file"
+			# WebP q99
+			echo "Saving WebP q99 at $(date "+%T")..."
+			cwebp -mt -q 99 -m 5 -o "test.${id}.q99.webp" "test.${id}.ppm" 2> /dev/null
 			# WebP q95
 			echo "Saving WebP q95 at $(date "+%T")..."
 			cwebp -mt -q 95 -m 5 -o "test.${id}.q95.webp" "test.${id}.ppm" 2> /dev/null
@@ -38,6 +41,9 @@ elif [ -d "./tmp/${1}" ]; then
 			# JXL d2.0 p
 			echo "Saving JPEG XL d2.0 at $(date "+%T")..."
 			cjxl --num_threads -1 -j 0 -d 2 -p --progressive_dc 1 "test.${id}.ppm" "test.${id}.d2.jxl" 2> /dev/null
+			# JXL HT
+			echo "Saving JPEG XL HT at $(date "+%T")..."
+			cjxl --num_threads -1 -j 0 -m 0 -d 0.25 -e 3 --faster_decoding 2 "test.${id}.ppm" "test.${id}.ht.jxl" 2> /dev/null
 			# mozJPEG q95 np
 			echo "Saving jpegli d1.0 at $(date "+%T")..."
 			cjpegli -d 1.0 -p 0 "test.${id}.ppm" "test.${id}.q95.jpg" 2> /dev/null
@@ -46,10 +52,10 @@ elif [ -d "./tmp/${1}" ]; then
 			cjpegli -d 1.0 -p 2 "test.${id}.ppm" "test.${id}.q95p.jpg" 2> /dev/null
 			# AVIF q90
 			echo "Saving AVIF q90 at $(date "+%T")..."
-			vips copy "test.${id}.ppm" "test.${id}.q90.avif[compression=av1,lossless=false,Q=90]"
+			#vips copy "test.${id}.ppm" "test.${id}.q90.avif[compression=av1,lossless=false,Q=90]"
 			# OpenJPEG J2K 85
 			echo "Saving OpenJPEG J2K 85 at $(date "+%T")..."
-			opj_compress -n 6 -I -SOP -EPH -mct 1 -p RPCL -b 64,64 -c "[256,256],[256,256],[128,128]" -t 512,512 -q 50 -i "${file}" -OutFor "JP2" -o "test.${id}.o85.jp2" > /dev/null 2> /dev/null
+			opj_compress -n 6 -I -SOP -EPH -mct 1 -p RPCL -b 64,64 -c "[256,256],[256,256],[128,128]" -t 512,512 -q 48 -i "${file}" -OutFor "JP2" -o "test.${id}.o85.jp2" > /dev/null 2> /dev/null
 			# Grok J2K 85
 			echo "Saving Grok J2K 85 at $(date "+%T")..."
 			grk_compress -n 6 -I -S -E -u R -Y 1 -p RPCL -b 64,64 -c "[256,256],[256,256],[128,128]" -t 512,512 -q 45 -i "test.${id}.ppm" -O "JP2" -o "test.${id}.g85.jp2" 2> /dev/null
